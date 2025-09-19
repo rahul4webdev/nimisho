@@ -16,8 +16,18 @@ log "CI_WORKSPACE: ${CI_WORKSPACE:-'not set'}"
 log "CI_DERIVED_DATA_PATH: ${CI_DERIVED_DATA_PATH:-'not set'}"
 log "CONFIGURATION: ${CONFIGURATION:-'not set'}"
 
+# Get the correct project root directory
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_ROOT="$(dirname "$(dirname "$SCRIPT_DIR")")"
+IOS_DIR="$(dirname "$SCRIPT_DIR")"
+
+log "Script directory: $SCRIPT_DIR"
+log "Project root: $PROJECT_ROOT"
+log "iOS directory: $IOS_DIR"
+
 # Navigate to project root
-cd "$CI_WORKSPACE"
+cd "$PROJECT_ROOT"
+log "Changed to project root: $(pwd)"
 
 # Add Flutter to PATH
 export PATH="$HOME/flutter/bin:$PATH"
@@ -60,10 +70,17 @@ fi
 if [ -f "ios/Podfile.lock" ]; then
     log "✅ Podfile.lock exists"
 else
-    log "❌ Podfile.lock missing!"
-    cd ios
+    log "❌ Podfile.lock missing! Reinstalling pods..."
+    cd "$IOS_DIR"
     pod install
-    cd ..
+    cd "$PROJECT_ROOT"
 fi
+
+# Final directory structure check
+log "📋 Final directory structure:"
+log "Contents of project root:"
+ls -la
+log "Contents of ios directory:"
+ls -la ios/
 
 log "✅ Pre-build setup completed"
