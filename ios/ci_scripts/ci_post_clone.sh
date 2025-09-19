@@ -25,30 +25,41 @@ fi
 export PATH="$FLUTTER_HOME/bin:$PATH"
 flutter config --enable-ios
 
-# Clean Flutter cache and build directories
-echo "🧹 Cleaning Flutter cache..."
+# Clean everything first
+echo "🧹 Cleaning Flutter cache and build directories..."
 flutter clean
 rm -rf ios/build/
 rm -rf build/
 rm -rf ios/Flutter/flutter_assets
 rm -rf ios/.symlinks
-rm -rf ios/Runner.xcworkspace/xcuserdata
 rm -rf ios/Pods/
 
-# Set proper permissions for build directories
-echo "🔧 Setting up build directories..."
+# Create and set permissions for necessary directories
+echo "🔧 Setting up build directories with proper permissions..."
 mkdir -p build/ios
 mkdir -p ios/build
-chmod -R 755 build/ 2>/dev/null || true
-chmod -R 755 ios/build/ 2>/dev/null || true
+mkdir -p ios/Flutter
+
+# Set broader permissions to ensure Flutter can write
+chmod -R 777 . 2>/dev/null || true
+chmod -R 777 build/ 2>/dev/null || true
+chmod -R 777 ios/build/ 2>/dev/null || true
+chmod -R 777 ios/Flutter/ 2>/dev/null || true
+
+# Also ensure the Flutter installation has proper permissions
+chmod -R 755 "$FLUTTER_HOME" 2>/dev/null || true
 
 # Get dependencies
 echo "📱 Getting Flutter dependencies..."
 flutter pub get
 
-# Generate iOS configuration without building
+# Generate iOS configuration with specific build settings
 echo "🔧 Generating iOS configuration..."
 flutter build ios --config-only --no-codesign
+
+# Ensure generated files have proper permissions
+chmod -R 777 ios/Flutter/ 2>/dev/null || true
+chmod -R 777 build/ 2>/dev/null || true
 
 # Install CocoaPods dependencies
 echo "📦 Installing CocoaPods dependencies..."
