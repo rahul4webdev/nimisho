@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "408737008468",
+    "project_id": "nimisho-daily",
+    "storage_bucket": "nimisho-daily.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:408737008468:android:f86af59e8e45e8c7d196c1",
+        "android_client_info": {
+          "package_name": "com.nimisho.raiderapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkImSD88auibdgqxnShe-qjbX8FcWCnHg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:408737008468:android:78ba17852123ce96d196c1",
+        "android_client_info": {
+          "package_name": "com.nimisho.user"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkImSD88auibdgqxnShe-qjbX8FcWCnHg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:408737008468:android:fbbb4f8c3d7fed63d196c1",
+        "android_client_info": {
+          "package_name": "com.nimisho.vendor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkImSD88auibdgqxnShe-qjbX8FcWCnHg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
